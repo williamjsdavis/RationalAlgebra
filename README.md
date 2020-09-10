@@ -17,6 +17,8 @@ Then, functions such as `RationalAlgebra.inv()` can be used to perform operation
 
 <img width="465" alt="s2" src="https://user-images.githubusercontent.com/38541020/92814951-9b93c800-f378-11ea-8a5c-33634bb4c012.png">
 
+For more examples, see `example.ipynb`.
+
 ## Other features
 
 Other features and operations that are available include:
