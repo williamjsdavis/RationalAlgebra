@@ -2,7 +2,7 @@ import numpy as _np
 from fractions import Fraction as _Fraction
 import fractions as _fractions
 from operator import matmul as _matmul
-import utils as _utils
+import RationalAlgebra.utils as _utils
 class RationalMatrix:
     # Only supports square matrices
     def __init__(self, intMatrix):

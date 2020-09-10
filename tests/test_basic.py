@@ -1,6 +1,9 @@
+import sys
+sys.path.insert(1, '../RationalAlgebra')
+
 import unittest
 import numpy as np
-import RationalAlgebra as ra
+import RationalAlgebra.RationalAlgebra as ra
 from fractions import Fraction as Fr
 from operator import matmul
 
