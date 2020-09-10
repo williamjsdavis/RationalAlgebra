@@ -7,7 +7,7 @@ When solving linear algebra problems, it can be useful to use a computer to auto
 
 <img width="589" alt="s1" src="https://user-images.githubusercontent.com/38541020/92814478-17d9db80-f378-11ea-850a-354fcf391834.png">
 
-How can we do operations like this, but keep the results in the rational numbers? Use an algorithm that defines matrix operations purely using rational numbers. I based the algorithms used on the some of the [linear algebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package from `Julia`.
+How can we do operations like this, but keep the results in the rational numbers? Use an algorithm that defines matrix operations purely using rational numbers. I based the algorithms used on the some from the [linear algebra](https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/) package from `Julia`.
 
 ## Using the package: RationalAlgebra
 
