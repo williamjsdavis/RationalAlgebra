@@ -24,7 +24,7 @@ For more examples, see `example.ipynb`.
 Other features and operations that are available include:
 - Row and column vectors of rational numbers.
 - Operations between matricies and vectors (as well as other combinations).
-  - Addition
+  - Addition/subtraction
   - Scalar multiplication
   - Matrix multiplication
 - LU decomposition
