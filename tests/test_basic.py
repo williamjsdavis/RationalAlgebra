@@ -54,6 +54,57 @@ class TestAddMatrixMethods(unittest.TestCase):
         self.assertEqual(type(self.intAdd1), ra.RationalMatrix)
         self.assertEqual(type(self.fracAdd1), ra.RationalMatrix)
         self.assertEqual(type(self.floatAdd1), ra.RationalMatrix)
+
+class TestSubMatrixMethods(unittest.TestCase):
+    def setUp(self):
+        self.exMatrix = ra.RationalMatrix(np.zeros((5,5)).astype(int))
+        self.exMatrix.value[2,4] = Fr(11,7)
+        self.exMatrix.value[1,2] = Fr(3,5)
+        self.exMatrix2 = ra.RationalMatrix(np.zeros((5,5)).astype(int))
+        self.exMatrix2.value[2,4] = Fr(1,7)
+        self.exMatrix2.value[1,2] = Fr(4,7)
+        
+        self.exColumnVector = ra.RationalVector(np.zeros((5,1)).astype(int))
+        self.exColumnVector.value[2] = Fr(3,4)
+        self.exColumnVector.value[4] = Fr(9,2)
+        self.exColumnVector2 = ra.RationalVector(np.zeros((5,1)).astype(int))
+        self.exColumnVector2.value[2] = Fr(1,4)
+        self.exColumnVector2.value[4] = Fr(23,2)
+        
+        self.exRowVector = ra.RationalVector(np.zeros((1,5)).astype(int))
+        self.exRowVector.value[0][2] = Fr(5,7)
+        self.exRowVector.value[0][0] = Fr(9,2)
+        self.exRowVector2 = ra.RationalVector(np.zeros((1,5)).astype(int))
+        self.exRowVector2.value[0][2] = Fr(1,7)
+        self.exRowVector2.value[0][0] = Fr(13,2)
+        
+        self.subMM = self.exMatrix - self.exMatrix2
+        self.subCC = self.exColumnVector - self.exColumnVector2
+        self.subRR = self.exRowVector - self.exRowVector2
+    def test_shape(self):
+        self.assertEqual(self.subMM.value.shape, (5, 5))
+        self.assertEqual(self.subCC.value.shape, (5, 1))
+        self.assertEqual(self.subRR.value.shape, (1, 5))
+    def test_value(self):
+        self.assertEqual(self.subMM.value[0,0], Fr(0,1))
+        self.assertEqual(self.subMM.value[2,4], Fr(10,7))
+        self.assertEqual(self.subMM.value[1,2], Fr(1,35))
+        
+        self.assertEqual(self.subCC.value[0], Fr(0,1))
+        self.assertEqual(self.subCC.value[2], Fr(1,2))
+        self.assertEqual(self.subCC.value[4], Fr(-7,1))
+    
+        self.assertEqual(self.subRR.value[0,1], Fr(0,1))
+        self.assertEqual(self.subRR.value[0,2], Fr(4,7))
+        self.assertEqual(self.subRR.value[0,0], Fr(-2,1))
+    def test_element_type(self):
+        self.assertEqual(type(self.subMM.value[1,4]), Fr)
+        self.assertEqual(type(self.subCC.value[0][0]), Fr)
+        self.assertEqual(type(self.subRR.value[0,0]), Fr)
+    def test_type(self):
+        self.assertEqual(type(self.subMM), ra.RationalMatrix)
+        self.assertEqual(type(self.subCC), ra.RationalVector)
+        self.assertEqual(type(self.subRR), ra.RationalVector)
         
 class TestMultiplyMatrixMethods(unittest.TestCase):
     def setUp(self):

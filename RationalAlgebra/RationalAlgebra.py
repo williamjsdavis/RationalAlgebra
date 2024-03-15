@@ -23,7 +23,17 @@ class RationalMatrix:
         else:
             out = self.value + other
         return RationalMatrix(out)
-    
+
+    def __sub__(self, other):
+        T = type(other)
+        if T is RationalMatrix:
+            out = self.value - other.value
+        elif T is float:
+            out = self.value - _Fraction(other)
+        else:
+            out = self.value - other
+        return RationalMatrix(out)
+
     def __radd__(self, other):
         T = type(other)
         if T is int or T is _Fraction or T is RationalMatrix:
@@ -35,7 +45,19 @@ class RationalMatrix:
             out = other + self.value
             outRa = RationalMatrix(out)
         return outRa
-    
+
+    def __rsub__(self, other):
+        T = type(other)
+        if T is int or T is _Fraction or T is RationalMatrix:
+            outRa = self - other
+        elif T is float:
+            out = _Fraction(other) - self.value
+            outRa = RationalMatrix(out)
+        else:
+            out = other - self.value
+            outRa = RationalMatrix(out)
+        return outRa
+
     def __mul__(self, other):
         T = type(other)
         if T is float:
@@ -126,6 +148,27 @@ class RationalVector:
                 raise ValueError("Dimension mismatch.")
         return outRa
     
+    def __sub__(self, other):
+        T = type(other)
+        if T is int or T is _Fraction:
+            out = self.value - other
+            outRa = RationalVector(out)
+        elif T is float:
+            out = self.value - _Fraction(other)
+            outRa = RationalVector(out)
+        else:
+            if T is RationalVector:
+                out = self.value - other.value
+            else:
+                out = self.value - other
+            if _utils.isVector(out):
+                outRa = RationalVector(out)
+            elif _utils.isSquare(out):
+                outRa = RationalMatrix(out)
+            else:
+                raise ValueError("Dimension mismatch.")
+        return outRa
+    
     def __radd__(self, other):
         T = type(other)
         if T is int or T is _Fraction or T is RationalVector:
@@ -137,7 +180,19 @@ class RationalVector:
             out = other + self.value
             outRa = RationalVector(out)
         return outRa
-    
+
+    def __rsub__(self, other):
+        T = type(other)
+        if T is int or T is _Fraction or T is RationalVector:
+            outRa = self - other
+        elif T is float:
+            out = _Fraction(other) - self.value
+            outRa = RationalVector(out)
+        else:
+            out = other - self.value
+            outRa = RationalVector(out)
+        return outRa
+
     def __mul__(self, other):
         T = type(other)
         if T is float:
