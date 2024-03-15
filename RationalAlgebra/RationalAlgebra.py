@@ -6,8 +6,10 @@ import RationalAlgebra.utils as _utils
 
 
 class RationalMatrix:
-    # Only supports square matrices
+    "Class for matrices of rational numbers. Only supports square matrices."
+    
     def __init__(self, intMatrix):
+        "Constructor for matrices of rational numbers. Takes in an integer (square) matrix."
         _utils.checkSquare(intMatrix)
         self.value = intMatrix + _Fraction()
         self.length = len(intMatrix)
@@ -95,7 +97,10 @@ class RationalMatrix:
 
 
 class RationalVector:
+    "Class for vectors of rational numbers."
+    
     def __init__(self, intVector):
+        "Constructor for vectors of rational numbers. Takes in an integer vector."
         _utils.checkVector(intVector)
         self.value = intVector + _Fraction()
         self.length = len(self.value)
@@ -194,6 +199,7 @@ class RationalVector:
 
 
 def inv(inRM):
+    "Find the inverse of a matrix of rational numbers, using LU decomposition."
     M = inRM.value
     A, ipiv = _LUrational(M)
     Mi = _invLU(A, ipiv)
@@ -201,10 +207,12 @@ def inv(inRM):
 
 
 def identity(n):
+    "Identity matrix of rational numbers, of size (n,n)."
     return RationalMatrix(_np.identity(n).astype(int))
 
 
 def lu(inRM):
+    "LU decomposition of a matrix of rational numbers."
     M = inRM.value
     A, ipiv = _LUrational(M)
     L = _utils.setUnitDiag(_utils.setTriL(A))
